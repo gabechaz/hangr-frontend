@@ -1,42 +1,48 @@
-
-import { Menu } from 'semantic-ui-react'
-function NavBar () {
+import { Link } from "react-router-dom";
+function NavBar ({currentUser, logout}) {
 
 return (
 
 
-<div>
-<Menu fluid widths = {5}>
 
-<Menu.Item
-          name='profile'
-      
-        >
-          Profile
-        </Menu.Item>
+    <div>
+    {currentUser ? 
+    <nav>
+    <Link  to ='/profile' exact='true'>
+         {currentUser.name}'s Profile 
+    </Link>
 
-        <Menu.Item
-          name='FindAHang'
-      
-        >
-          Find-a-Hang
-        </Menu.Item>
+    <Link to ='/find-hang' exact='true' >
+          Find-a-Hang 
+    </Link>
 
-        <Menu.Item
-          name='myHangs'
+    <Link to ='/my-hangs' exact='true'>
+          My Hangs 
+    </Link>
 
-        >
-          My Hangs
-        </Menu.Item>
+    <Link to ='/make-hang' exact='true'>
+          Make a Hang
+    </Link>
 
-        <Menu.Item
-          name='karma'
-
-        >
+    <Link to ='/karma' exact='true'>
           Karma
-        </Menu.Item>
-      </Menu>
-</div>
+    </Link>
+
+    <Link  
+        to='/logout' exact='true' onClick={logout}>Log Out
+    </Link>
+        </nav>
+       : 
+       <nav>
+       <Link to='/login' exact='true'>
+           Login 
+       </Link>
+       <Link to='/signup' exact='true'>
+           Sign up
+       </Link>
+       
+       </nav>}
+       </div>
 )
 }
 
