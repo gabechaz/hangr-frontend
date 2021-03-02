@@ -10,6 +10,7 @@ import MakeHang from './MakeHang.js'
 import Karma from './Karma.js'
 import Profile from './Profile'
 import Login from './Login.js'
+import Hang from './Hang'
 const API = 'http://localhost:3000'
 
 function App() {
@@ -100,7 +101,7 @@ const logout = () => {
       </Route>
 
       <Route exact path="/make-hang">
-        <MakeHang API = {API} />
+        <MakeHang currentUser={currentUser} API = {API} />
       </Route>
 
       <Route exact path="/find-hang" >
@@ -108,7 +109,7 @@ const logout = () => {
       </Route>
 
       <Route exact path ='/login'>
-        <Login login= {login} errors={errors} />
+        <Login login={login} errors={errors} />
       </Route>
 
       <Route exact path = '/signup'>
@@ -116,11 +117,15 @@ const logout = () => {
       </Route>
 
       <Route  exact path = "/my-hangs">
-        <MyHangs />
+        {currentUser && <MyHangs API={API} currentUser={currentUser} />}
       </Route>
 
-    <Route  exact path ="/profile">
+    <Route  exact path="/profile">
       {currentUser && <Profile currentUser = {currentUser} />}
+    </Route>
+
+    <Route exact path='/hangs/:id'>
+         <Hang currentUser={currentUser} API={API} />
     </Route>
     
     </Switch>

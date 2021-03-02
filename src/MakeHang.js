@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Select from 'react-select'
 import React, { useState, useEffect} from 'react'
-
+import 'bootstrap/dist/css/bootstrap.css'
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -12,7 +13,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function MakeHang ({API}) {
+function MakeHang ({API, currentUser}) {
+
+    
 
 
     function populateActOptions (optObjs) {
@@ -31,67 +34,95 @@ function MakeHang ({API}) {
           .then (acts => (setActivityArr(populateActOptions(acts))))
   
       }
-      ,[]
+      ,[API]
       )
 
-      const hangObj = {
-          activityId: chosenAct,
-          location: location ,
-          time: time,
-          peopleNeeded: peopleNeeded
-      }
+
     
     const [activityArr, setActivityArr] = useState([])
-    const [chosenAct, setChosenAct] = useState("")
+    const [chosenActId, setChosenActId] = useState("")
+    const [chosenActName, setChosenActName] = useState("")
     const [location, setLocation] = useState("")
     const [time, setTime] = useState("")
     const [peopleNeeded, setPeopleNeeded] = useState("")
+    const history = useHistory()
+
+
 
     function handleTimeChoice (e) {
-
+        setTime(e.target.value)
     }
 
     function handleLocationChoice (e) {
-
+        setLocation(e.target.value)
     }
 
-    function handlePeopleNeeded () {
-
+    function handlePeopleNeeded (e) {
+        setPeopleNeeded(e.target.value)
     }
 
     function handleActChange(e) {
-        setChosenAct(e.id)
+        setChosenActId(e.value)
+        setChosenActName(e.label)
     }
+
+    function submitNewHang(e) {
+        e.preventDefault()
+        const hangObj = {
+            user_id: currentUser.id,
+            activity_name: chosenActName,
+            activity_id: chosenActId,
+            location: location,
+            time: time,
+            people_needed: peopleNeeded
+        }
+        fetch(`${API}/hangs`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify(hangObj)
+          })
+          .then(res => res.json())
+          .then(newHang => {
+              console.log(newHang)
+              history.push(`/hangs/${newHang.id}`)
+          })
+        }
 
     const classes = useStyles();
     return (
-<form className={classes.root} noValidate autoComplete="off">
-        <Select onChange = {handleActChange} options = {activityArr} />
+<form onSubmit = {submitNewHang} className={classes.root} noValidate autoComplete="off">
+  
+
         <TextField
           id="time"
           label="Time"
           value={time}
-          onChange={handleChange}
+          onChange={handleTimeChoice}
           variant="filled"
         />
 
         <TextField
-          id="place"
-          label="Name"
-          value={name}
-          onChange={handleChange}
+          id="location"
+          label="Location"
+          value={location}
+          onChange={handleLocationChoice}
           variant="filled"
         />
 
         <TextField
           id="people-needed"
-          label="Name"
-          value={name}
-          onChange={handleChange}
+          label="People Needed"
+          value={peopleNeeded}
+          onChange={handlePeopleNeeded}
           variant="filled"
         />
 
-        
+        <Select className="mt-4 col-md-8 col-offset-4" onChange = {handleActChange} options = {activityArr} />
+
+        <input type="submit" value="Submit" />
       
     </form>
     )
