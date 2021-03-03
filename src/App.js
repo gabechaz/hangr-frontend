@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-
+import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBar from './NavBar.js'
 import React, { useState, useEffect} from 'react'
 import FindAHang from './FindAHang.js'
@@ -105,7 +105,7 @@ const logout = () => {
       </Route>
 
       <Route exact path="/find-hang" >
-        <FindAHang />
+        <FindAHang API={API} />
       </Route>
 
       <Route exact path ='/login'>

@@ -1,5 +1,10 @@
+import { useHistory } from "react-router-dom";
+
 function HangCard ({hang}) {
-    console.log(hang)
+   const history = useHistory()
+    function goToHangPage (e) {
+        history.push(`/hangs/${hang.id}`)
+    }
     return (
 <div>
     <div>
@@ -14,6 +19,8 @@ function HangCard ({hang}) {
     <div>
       Location:  {hang.location}
     </div>
+    <button onClick={goToHangPage}>See Info</button>
+    <br />
 
 </div>
     )
