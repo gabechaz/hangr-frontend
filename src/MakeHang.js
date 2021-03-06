@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import DateTimePicker from 'react-datetime-picker'
 import Select from 'react-select'
 import React, { useState, useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -43,15 +44,17 @@ function MakeHang ({API, currentUser}) {
     const [chosenActId, setChosenActId] = useState("")
     const [chosenActName, setChosenActName] = useState("")
     const [location, setLocation] = useState("")
-    const [time, setTime] = useState("")
+    const [time, setTime] = useState(new Date())
     const [peopleNeeded, setPeopleNeeded] = useState("")
     const history = useHistory()
 
 
 
-    function handleTimeChoice (e) {
-        setTime(e.target.value)
-    }
+      function handleTime (e) {
+          console.log(e)
+        setTime(e)
+      }
+    
 
     function handleLocationChoice (e) {
         setLocation(e.target.value)
@@ -96,13 +99,14 @@ function MakeHang ({API, currentUser}) {
 <form onSubmit = {submitNewHang} className={classes.root} noValidate autoComplete="off">
   
 
-        <TextField
+        <DateTimePicker
+        utc='true'
           id="time"
           label="Time"
           value={time}
-          onChange={handleTimeChoice}
+          onChange={handleTime}
           variant="filled"
-        />
+         />
 
         <TextField
           id="location"

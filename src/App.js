@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import NavBar from './NavBar.js'
+import NaviBar from './NavBar.js'
 import React, { useState, useEffect} from 'react'
 import FindAHang from './FindAHang.js'
 import Signup from './Signup.js'
@@ -73,7 +73,7 @@ function signup (sObj) {
 
 
 const logout = () => {
-  // localStorage.removeItem("token")
+  localStorage.removeItem("token")
   fetch(`${API}/logout`, {
     method: "POST"
   })
@@ -93,7 +93,7 @@ const logout = () => {
 
   return (
     <div className="App">
-       <NavBar logout={logout} currentUser = {currentUser}/>
+       <NaviBar logout={logout} currentUser = {currentUser}/>
       <Switch>
 
       <Route exact path="/karma">
@@ -105,7 +105,7 @@ const logout = () => {
       </Route>
 
       <Route exact path="/find-hang" >
-        <FindAHang API={API} />
+       {currentUser && <FindAHang currentUser={currentUser} API={API} />}
       </Route>
 
       <Route exact path ='/login'>
@@ -125,7 +125,7 @@ const logout = () => {
     </Route>
 
     <Route exact path='/hangs/:id'>
-         <Hang currentUser={currentUser} API={API} />
+       {currentUser &&  <Hang currentUser={currentUser} API={API} />}
     </Route>
     
     </Switch>

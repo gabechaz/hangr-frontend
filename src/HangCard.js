@@ -1,14 +1,18 @@
 import { useHistory } from "react-router-dom";
-
-function HangCard ({hang}) {
+import Button from 'react-bootstrap/Button'
+function HangCard ({currentUser, hang}) {
    const history = useHistory()
     function goToHangPage (e) {
         history.push(`/hangs/${hang.id}`)
     }
+    console.log(hang.id)
     return (
 <div>
     <div>
     {hang.activity_name}
+    </div>
+    <div>
+    Host: {currentUser.name}
     </div>
     <div>
        People Needed {hang.people_needed}
@@ -19,7 +23,7 @@ function HangCard ({hang}) {
     <div>
       Location:  {hang.location}
     </div>
-    <button onClick={goToHangPage}>See Info</button>
+    <Button variant='success' onClick={goToHangPage}>See Info</Button>
     <br />
 
 </div>

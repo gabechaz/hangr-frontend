@@ -1,31 +1,77 @@
 import { useEffect, useState } from "react"
 import HangCard from './HangCard.js'
+import ListGroup from 'react-bootstrap/ListGroup'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
+
 
 function MyHangs ({API, currentUser}) {
-
-    const [myHangs, setMyHangs] = useState([])
+    const [myRSVPS, setMyRSVPS] = useState([<HangCard />])
+    const [myHangs, setMyHangs] = useState([<HangCard />])
         useEffect(() =>  {
         
         fetch(`${API}/users/${currentUser.id}`)
         .then(res => res.json())
         .then(data => setMyHangs(data.user_hangs))
         }
+        
     ,[API, currentUser.id]
     )
-        console.log(myHangs)
-    const hangs = myHangs.map(hang => {
+
+    useEffect(() =>  {
+        
+        fetch(`${API}/users/${currentUser.id}`)
+        .then(res => res.json())
+        .then(user => setMyRSVPS(user.rsvps))
+        }
+        
+    ,[API, currentUser.id]
+    )
+
+    const rsvps = myRSVPS.map(hang => {
         return (
-            <HangCard key={hang.id} hang={hang} />
+            <ListGroup.Item>
+            <HangCard currentUser={currentUser} key={hang.id} hang={hang} />
+            </ListGroup.Item>
         )
     })
+    
+    const hangs = myHangs.map(hang => {
+        console.log(hang)
+        return (
+            <ListGroup.Item>
+            <HangCard currentUser={currentUser} key={hang.id} hang={hang} />
+            </ListGroup.Item>
+        )  
+    })
 
-    console.log(hangs)
+
     return (
+
+
         <div>
-        <div> {currentUser.name}'s Hangs</div>
-       <div>
+        
+     
+        <Container>
+        <Row>
+            <Col>
+        <h1> {currentUser.name}'s Hangs</h1>
+       
+            <ListGroup>
            {hangs}
-       </div> 
+           </ListGroup>
+           </Col>
+           <Col>
+           <h1>{currentUser.name}'s RSVPs</h1>
+           <ListGroup>
+           {rsvps}
+           </ListGroup>
+           </Col>
+       </Row>
+       </Container>
+
        </div>
     )
 
