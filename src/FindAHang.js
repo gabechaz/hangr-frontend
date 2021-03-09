@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react"
+import { useEffect, useState } from "react"
 import ListGroup from 'react-bootstrap/ListGroup'
 import FindAHangCard from './FindAHangCard'
 // import TinderCard from 'react-tinder-card'
@@ -10,6 +10,7 @@ function FindAHang ({API, currentUser}) {
         fetch(`${API}/hangs`)
         .then(res => res.json())
         .then(hangs => {
+            console.log(hangs)
             setHangs(handleHangs(hangs))
         })
     }, [API]
@@ -18,13 +19,13 @@ function FindAHang ({API, currentUser}) {
     function handleHangs (hangs) {
         return (
         hangs.filter(hang => hang.user.id !== currentUser.id)
-        .filter(hang => hang.rsvp_ids.includes(currentUser.id))
+        .filter(hang => !hang.rsvp_ids.includes(currentUser.id))
         .filter(hang => hang.people_needed > 0)
         )
     }
 
     const [hangs, setHangs] = useState([])
-
+    console.log(hangs)
     
     const hangsList = hangs.map(hang => {
         return (

@@ -1,0 +1,9 @@
+div {
+    /* border-style: solid; */
+}
+
+.karma-div {
+    background-color: orange;
+    width: 500px;
+    height: 500px;
+}

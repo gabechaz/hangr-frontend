@@ -1,3 +1,4 @@
+import './css-files/App.css'
 import { Route, Switch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -11,7 +12,10 @@ import Karma from './Karma.js'
 import Profile from './Profile'
 import Login from './Login.js'
 import Hang from './Hang'
+import HangFeed from './HangFeed.js'
 const API = 'http://localhost:3000'
+
+
 
 function App() {
 
@@ -25,8 +29,9 @@ useEffect(() => {
   })
     .then((response) => response.json())
     .then((userData) => { 
-      if (userData.id)
-      {setCurrentUser(userData)}})
+      console.log(userData)
+      // if (userData.id === true)
+      setCurrentUser(userData)})
 }, [])
 
 const login = (credObject) => {
@@ -97,11 +102,15 @@ const logout = () => {
       <Switch>
 
       <Route exact path="/karma">
-        <Karma />
+       {currentUser && <Karma API={API} currentUser={currentUser} />}
       </Route>
 
       <Route exact path="/make-hang">
         <MakeHang currentUser={currentUser} API = {API} />
+      </Route>
+
+      <Route exact path = '/hang-feed'>
+        <HangFeed API = {API}/>
       </Route>
 
       <Route exact path="/find-hang" >

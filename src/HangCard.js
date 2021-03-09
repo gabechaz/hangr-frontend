@@ -1,11 +1,15 @@
 import { useHistory } from "react-router-dom";
+import {useState} from 'react'
 import Button from 'react-bootstrap/Button'
 function HangCard ({currentUser, hang}) {
+
+
+    const time = new Date(hang.time)
    const history = useHistory()
     function goToHangPage (e) {
         history.push(`/hangs/${hang.id}`)
     }
-    console.log(hang.id)
+
     return (
 <div>
     <div>
@@ -18,7 +22,7 @@ function HangCard ({currentUser, hang}) {
        People Needed {hang.people_needed}
     </div>
     <div>
-       Time: {hang.time}
+       Time: {time.toDateString()}
     </div>
     <div>
       Location:  {hang.location}

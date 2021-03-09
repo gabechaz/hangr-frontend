@@ -1,3 +1,4 @@
+import './css-files/FindAHangCard.css'
 import {ListGroup, Button} from 'react-bootstrap/'
 import { useHistory } from "react-router-dom";
 function FindAHangCard ({hang, API, currentUser}) {
@@ -38,7 +39,9 @@ const history = useHistory()
     }
     return (
     <ListGroup.Item key={hang.id}>
-        What: {hang.activity_name}
+        What: {hang.game_name}
+        <br />
+        <img className='Game-image' src={hang.game_image} alt = {hang.game_name} />
         <br />
         Where: {hang.location}
         <br />

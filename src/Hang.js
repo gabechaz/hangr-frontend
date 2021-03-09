@@ -4,18 +4,22 @@ import { useEffect } from "react";
 
 function Hang ({currentUser, API}) {
 const { id }= useParams()
+const [time, setTime] = useState("")
 const [hang, setHang] = useState({activity_name: 'Loading', time: 'Loading', location: 'Loading', user: 'Loading', people_needed: 'Loading'})
 useEffect( () => {
     fetch(`${API}/hangs/${id}`)
     .then (res => res.json())
     .then(theHang =>{ 
+       const date = new Date(theHang.time)
+        setTime(date)
+        console.log(date)
         setHang(theHang)
         setAttendees(handleAttendees(theHang.rsvps))
     })
 }, [API, id]
 )
-
-const [attendees, setAttendees] = useState("")
+console.log(typeof(hang.time))
+const [attendees, setAttendees] = useState([])
 function handleAttendees (attArr) {
     return (
         attArr.map(a => {
@@ -30,7 +34,9 @@ return (
     <div>
     <h1>This is information about the hang!</h1>
     <div>
-         {hang.activity_name}
+         Game: {hang.game_name}
+         <br />
+         <img src={hang.game_image} alt = {hang.game_name} />
     </div>
     <div>
         Host: {currentUser.name}
@@ -45,7 +51,7 @@ return (
         Location: {hang.location}
     </div>
     <div>
-       Time:  {hang.time}
+       Time:   {time ? time.getHours() : null}  {time ? time.toDateString() : null}
     </div>
     </div>
 

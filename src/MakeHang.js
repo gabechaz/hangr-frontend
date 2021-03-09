@@ -1,7 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import DateTimePicker from 'react-datetime-picker'
-import Select from 'react-select'
+import GameCard from './GameCard.js'
+// import Select from 'react-select'
 import React, { useState, useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import { useHistory } from "react-router-dom";
@@ -19,20 +20,20 @@ function MakeHang ({API, currentUser}) {
     
 
 
-    function populateActOptions (optObjs) {
-        return(  optObjs.map(opt => {
-              return (
-              {
-                  label: opt.name,
-                  value: opt.id
-              })
-          }))
-      }
+    // function populateActOptions (optObjs) {
+    //     return(  optObjs.map(opt => {
+    //           return (
+    //           {
+    //               label: opt.name,
+    //               value: opt.id
+    //           })
+    //       }))
+    //   }
   
       useEffect(() => {
           fetch(`${API}/activities`)
           .then (res => res.json())
-          .then (acts => (setActivityArr(populateActOptions(acts))))
+        //   .then (acts => (setActivityArr(populateActOptions(acts))))
   
       }
       ,[API]
@@ -40,19 +41,39 @@ function MakeHang ({API, currentUser}) {
 
 
     
-    const [activityArr, setActivityArr] = useState([])
-    const [chosenActId, setChosenActId] = useState("")
-    const [chosenActName, setChosenActName] = useState("")
+    // const [activityArr, setActivityArr] = useState([])
+    // const [chosenActId, setChosenActId] = useState("")
+    // const [chosenActName, setChosenActName] = useState("")
     const [location, setLocation] = useState("")
     const [time, setTime] = useState(new Date())
+    const [timeString, setTimeString] = useState("")
     const [peopleNeeded, setPeopleNeeded] = useState("")
     const history = useHistory()
+    const [gameID, setGameID] = useState("")
+    const [gameName, setGameName] = useState("")
+    const [gameImg, setGameImg] = useState("")
+
+    const [apiString, setApiString] = useState("")
 
 
+    const [gamesList, setGamesList] = useState([])
+    const [gameCards, setGameCards] = useState([])
+
+      useEffect(() => {
+          const gamesCards = gamesList.map(game => {
+              return (
+                  <GameCard setGameImg={setGameImg} setGamesList={setGamesList} gamesList={gamesList} setGameName={setGameName} setGameID={setGameID} key = {game.id} game = {game} />
+              )
+          })
+          setGameCards(gamesCards)
+      }
+      , [gamesList]
+      )
 
       function handleTime (e) {
-          console.log(e)
-        setTime(e)
+        
+         setTimeString(String(e))
+        setTime(e)     
       }
     
 
@@ -64,21 +85,24 @@ function MakeHang ({API, currentUser}) {
         setPeopleNeeded(e.target.value)
     }
 
-    function handleActChange(e) {
-        setChosenActId(e.value)
-        setChosenActName(e.label)
-    }
-
+    // function handleActChange(e) {
+    //     setChosenActId(e.value)
+    //     setChosenActName(e.label)
+    // }
+  
     function submitNewHang(e) {
         e.preventDefault()
         const hangObj = {
+            game_image: gameImg ,
+            game_id: gameID ,
+            game_name: gameName ,
             user_id: currentUser.id,
-            activity_name: chosenActName,
-            activity_id: chosenActId,
             location: location,
             time: time,
+            time_string: timeString,
             people_needed: peopleNeeded
         }
+      
         fetch(`${API}/hangs`, {
             method: "POST",
             headers: {
@@ -94,8 +118,40 @@ function MakeHang ({API, currentUser}) {
           })
         }
 
+       function  handleGamesRequest (gamesArr) {
+           const gameList = []
+           gamesArr.forEach(game => {
+               gameList.push({commentary: game.commentary, name: game.name, image: game.image_url, id: game.id})
+           })
+           setGamesList(gameList)
+           console.log(gamesList)
+                
+        }
+
+        function testAPI (string) {
+            fetch(`https://api.boardgameatlas.com/api/search?name=${string}&fields=image_url,id,commentary,name&client_id=gmOCoN4Ssb`)
+            .then(res => res.json())
+            .then(res => {
+                handleGamesRequest(res.games)
+                })
+        }
+
+        function handleGameSearch (e) {
+            e.preventDefault()
+            const split = apiString.split(" ")
+            const united = split.join('%20')
+            testAPI(united)
+        }
+
+        function handleApiString (e) {
+            setApiString(e.target.value)
+        }
+
+
+
     const classes = useStyles();
     return (
+        <div>
 <form onSubmit = {submitNewHang} className={classes.root} noValidate autoComplete="off">
   
 
@@ -124,11 +180,27 @@ function MakeHang ({API, currentUser}) {
           variant="filled"
         />
 
-        <Select className="mt-4 col-md-8 col-offset-4" onChange = {handleActChange} options = {activityArr} />
+        {/* <Select className="mt-4 col-md-8 col-offset-4" onChange = {handleActChange} options = {gameNames} /> */}
 
+
+    
         <input type="submit" value="Submit" />
       
     </form>
+    <form onSubmit={handleGameSearch}>
+
+    <TextField
+          id="game-search"
+          label="Enter Game Name"
+          value={apiString}
+            onChange={handleApiString}
+          variant="filled"
+        />
+        <br />
+          <input  type="submit" value="Find Game" />
+    </form>
+    {gameCards}
+        </div>
     )
 }
 

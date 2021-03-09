@@ -12,15 +12,31 @@ return (
     {currentUser ? 
     <Container>
     <Navbar bg='warning'  >
-        <Nav.Link>
+
+        <Nav>
     <Link  to ='/profile' exact='true'>
          {currentUser.name}'s Profile 
+         <Navbar.Brand href="#home">
+      <img
+        src={currentUser.img}
+        width="30"
+        height="30"
+        className="d-inline-block align-top"
+        alt="User Avatar"
+      />
+    </Navbar.Brand>
     </Link>
-    </Nav.Link>
+    </Nav>
 
         <Nav.Link>
     <Link to ='/find-hang' exact='true' >
           Find-a-Hang 
+    </Link>
+    </Nav.Link>
+
+    <Nav.Link>
+    <Link to ='/hang-feed' exact='true' >
+          Hangs Feed
     </Link>
     </Nav.Link>
 
