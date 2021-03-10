@@ -1,6 +1,16 @@
-/* .Game-image {
-    max-height: 150px;
+.Game-image {
+    max-height: 180px;
 max-width: 200px;
 width: 120px;
 height: 120px;
-} */
+background-color: #fbe6c2;
+}
+
+.find-hang-div {
+    /* padding: 500px; */
+    margin: 10px;
+    color: #ac0d0d;
+    background-color:#f0c929; 
+    width: 200px;
+}
+

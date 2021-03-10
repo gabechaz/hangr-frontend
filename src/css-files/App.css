@@ -1,6 +1,7 @@
 .App {
   text-align: center;
-  background-color: cadetblue;
+  background-color: #fbe6c2;
+  color: #ac0d0d;
 }
 
 .App-logo {
@@ -15,6 +16,10 @@
 }
 
 
+
+/* . {
+  display: grid;
+} */
 
 .login,
 .image {
@@ -41,7 +46,7 @@
   align-items: center;
   justify-content: inherit;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #ac0d0d;
 }
 
 .Game-image {
@@ -50,12 +55,24 @@ max-width: 200px;
 width: 120px;
 height: 120px;
 }
+
+.hang-game-image {
+  max-height: 200px;
+max-width: 200px;
+width: 200px;
+height: 200px;
+}
+
+.avatar-thumb {
+  width: 25px;
+  height: 25px;
+}
 /* 
 .App {
 
 } */
 .App-link {
-  color: #61dafb;
+  color: #ac0d0d;
 }
 
 @keyframes App-logo-spin {
@@ -65,4 +82,14 @@ height: 120px;
   to {
     transform: rotate(360deg);
   }
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 0.75rem 1.25rem;
+  background-color: #f0c929;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  height: 300px;
+  overflow: scroll;
 }

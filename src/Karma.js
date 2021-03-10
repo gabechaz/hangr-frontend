@@ -15,9 +15,9 @@ function Karma ({currentUser, API}) {
     //     console.log(hang)
     //     console.log(Date.parse(hang.time), hang.location)
     // })
-    const tBR = hangs.filter(hang => Date.parse(hang.time) > currentTimeStamp 
+    const tBR = hangs.filter(hang => Date.parse(hang.time) < currentTimeStamp 
          )
-        //  console.log(tBR)
+         console.log(tBR)
          console.log(hangs)
     // console.log(hangs.length)
 

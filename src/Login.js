@@ -42,7 +42,7 @@ function Login ({login, errors}) {
                 <div className="row">
                     <div className="col-lg-10 col-xl-7 mx-auto">
                         <h3 className="display-4">Welcome back!</h3>
-                        <p className="text-muted mb-4">Enter your info to start playing som sweet games</p>
+                        <p className="text-muted mb-4">Enter your info to find some cool people to play games with</p>
                         <form>
                             <div className="form-group mb-3">
                                 <input id="inputEmail" type="email" value={usernameInput} onChange={handleUsernameInput} placeholder="User name" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />

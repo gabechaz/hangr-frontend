@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
+import './css-files/App.css'
 import HangCard from './HangCard.js'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-
+const currentTime = new Date()
+const currentTimeStamp = Date.parse(currentTime)
 
 function MyHangs ({API, currentUser}) {
     const [myRSVPS, setMyRSVPS] = useState([<HangCard />])
@@ -24,13 +26,18 @@ function MyHangs ({API, currentUser}) {
         
         fetch(`${API}/users/${currentUser.id}`)
         .then(res => res.json())
-        .then(user => setMyRSVPS(user.rsvps))
+        .then(user => setMyRSVPS(user.rsvps)
+        )
         }
         
     ,[API, currentUser.id]
     )
 
-    const rsvps = myRSVPS.map(hang => {
+
+
+    const rsvps = myRSVPS
+    .filter(h =>  Date.parse(h.time) > currentTime)
+    .map(hang => {
         return (
             <ListGroup.Item>
             <HangCard currentUser={currentUser} key={hang.id} hang={hang} />

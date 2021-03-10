@@ -40,7 +40,8 @@ function Signup ({ signup }) {
     setPassword(event.target.value)
   }
 
-  const imgInt = getRandomInt(1, 100)
+  const [imgInt, setImgInt] = useState(getRandomInt(1, 100))
+
 
 
   function getRandomInt(min, max) {
@@ -50,7 +51,8 @@ function Signup ({ signup }) {
   }
 
 
-  const img = `https://avatars.dicebear.com/api/gridy/${imgInt}.svg`
+  const [img, setImg] = useState(`https://avatars.dicebear.com/api/gridy/${imgInt}.svg`)
+
 
 
   const handleSubmit = (event) => {
@@ -59,6 +61,11 @@ function Signup ({ signup }) {
     signup(newSignup)
 
    
+  }
+
+  function changeAvatar () {
+    let randomNum = (getRandomInt(1, 100))
+      setImg(`https://avatars.dicebear.com/api/gridy/${randomNum}.svg`)
   }
 
   return (
@@ -75,28 +82,49 @@ function Signup ({ signup }) {
         {/* <!-- The content half --> */}
         <div className="col-md-6 bg-light">
             <div className="login d-flex align-items-center py-5">
-              
+
                 {/* <!-- Demo content--></div> */}
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-10 col-xl-7 mx-auto">
                             <h3 className="display-4">Sign up</h3>
                             <p className="text-muted mb-4"></p>
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div className="form-group mb-3">
-                                    <input id="inputEmail" type="email" placeholder="Email address" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
+                                    <input onChange={handleUsername} value={username} id="inputEmail" type="text" placeholder="Username" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
                                 </div>
+
+
                                 <div className="form-group mb-3">
-                                    <input id="inputPassword" type="password" placeholder="Password" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
+                                    <input value={password} onChange={handlePassword} id="inputPassword" type="password" placeholder="Password" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
                                 </div>
-                                <div className="custom-control custom-checkbox mb-3">
-                                    <input id="customCheck1" type="checkbox" checked className="custom-control-input" />
-                                    <label for="customCheck1" className="custom-control-label">Remember password</label>
+
+                                <div className="form-group mb-3">
+                                    <input value={name} onChange={handleName} id="inputEmail" type="text" placeholder="Name" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
                                 </div>
-                                <button type="submit" className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign in</button>
-                                <div className="text-center d-flex justify-content-between mt-4"><p>Snippet by <a href="https://bootstrapious.com/snippets" className="font-italic text-muted"> 
-                                        <u>Boostrapious</u></a></p></div>
+
+                                <div className="form-group mb-3">
+                                    <input value={location} onChange={handleLocation}  id="inputEmail" type="text" placeholder="Location" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
+                                </div>
+
+                                <div className="form-group mb-3">
+                                    <input value={favGame} onChange={handleFavGame} id="inputEmail" type="text" placeholder="Favorite Game" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
+                                </div>
+
+                                <div className="form-group mb-3">
+                                    <input value={favGenre} onChange={handleFavGenre} id="inputEmail" type="text" placeholder="Favorite Genre" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
+                                </div>
+
+                           
+                      
+
+
+                                <button  type="submit" className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign Up</button>
+
                             </form>
+                            <p>Your avatar is displayed on the left. If you would like a different one, press this button until you find one you like</p>
+                            <br />
+                            <button onClick={changeAvatar} className ="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">New Avatar</button>
                         </div>
                     </div>
                 </div>

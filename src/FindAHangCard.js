@@ -38,7 +38,8 @@ const history = useHistory()
 
     }
     return (
-    <ListGroup.Item key={hang.id}>
+        
+        <div className='find-hang-div'>
         What: {hang.game_name}
         <br />
         <img className='Game-image' src={hang.game_image} alt = {hang.game_name} />
@@ -52,7 +53,7 @@ const history = useHistory()
         Host: {hang.user.name}
         <br />
         <Button onClick={signup}  variant="primary">Signup</Button>
-    </ListGroup.Item>
+        </div>
     )
 }
 

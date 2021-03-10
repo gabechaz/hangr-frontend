@@ -41,7 +41,7 @@ return (
     <div>
     {hangCards}
     </div>
-    <div>HI</div>
+
     </div>
 )
 }

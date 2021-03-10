@@ -1,4 +1,5 @@
 import './css-files/App.css'
+import './css-files/index.css'
 import { Route, Switch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -130,7 +131,7 @@ const logout = () => {
       </Route>
 
     <Route  exact path="/profile">
-      {currentUser && <Profile currentUser = {currentUser} />}
+      {currentUser && <Profile API={API} setCurrentUser={setCurrentUser} currentUser = {currentUser} />}
     </Route>
 
     <Route exact path='/hangs/:id'>

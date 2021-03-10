@@ -1,3 +1,4 @@
+import './css-files/App.css'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import DateTimePicker from 'react-datetime-picker'
@@ -199,7 +200,9 @@ function MakeHang ({API, currentUser}) {
         <br />
           <input  type="submit" value="Find Game" />
     </form>
+    <div className ='game-cards'>
     {gameCards}
+    </div>
         </div>
     )
 }

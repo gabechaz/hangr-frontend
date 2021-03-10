@@ -1,7 +1,20 @@
 import './css-files/Profile.css'
+import {useEffect, useState} from 'react'
 
 
-function Profile ({currentUser}) {
+function Profile ({API, setCurrentUser, currentUser}) {
+
+
+useEffect(() => {
+  fetch(`${API}/users/${currentUser.id}`)
+  .then(res => res.json())
+  .then(user =>setCurrentUser(user) )
+}
+
+)
+
+
+
     return (
 <div className="container">
   <div className="row">
@@ -17,7 +30,6 @@ function Profile ({currentUser}) {
         Username: {currentUser.username} <br />
         Favorite Board Game: {currentUser.favGame}<br />
         Favorite Genre: {currentUser.favGenre}<br />
-        Bio: {currentUser.bio}<br />
         Karma: {currentUser.karma > 0 ? currentUser.karma : currentUser.name + ' has no karma reviews yet!' }
       </p>
     </div>

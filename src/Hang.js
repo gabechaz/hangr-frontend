@@ -1,3 +1,4 @@
+import './css-files/App.css'
 import { useParams } from "react-router-dom";
 import {useState} from 'react'
 import { useEffect } from "react";
@@ -24,7 +25,11 @@ function handleAttendees (attArr) {
     return (
         attArr.map(a => {
             return (
-            <p key ={a.id}>{a}</p>)
+                <div>
+            <img className = 'avatar-thumb' src={a.img} />
+            <span key ={a.id}>{a.name}</span>
+            </div>)
+            
         })
     )
 }
@@ -32,11 +37,11 @@ function handleAttendees (attArr) {
 return (
     
     <div>
-    <h1>This is information about the hang!</h1>
+    <h1>{hang.game_name} with {hang.user.name}!</h1>
     <div>
          Game: {hang.game_name}
          <br />
-         <img src={hang.game_image} alt = {hang.game_name} />
+         <img className='hang-game-image' src={hang.game_image} alt = {hang.game_name} />
     </div>
     <div>
         Host: {currentUser.name}

@@ -45,12 +45,12 @@ function KarmaForm ({API, currentUser, attendee, hangId}) {
 
 
  <label>Leave a Comment and rating for {attendee.name}!</label>
- <div>
+ <div className="five-star">
  <ReactStars
 count={5}
 onChange={ratingChanged}
 size={24}
- activeColor="#ffd700"
+activeColor="#ffd700"
  /> </div>
  <br />
  <input type='text' value={comment} onChange = {handleCommentChange}></input>

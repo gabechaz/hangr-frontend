@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
-import ListGroup from 'react-bootstrap/ListGroup'
 import FindAHangCard from './FindAHangCard'
-// import TinderCard from 'react-tinder-card'
+
 
 
 function FindAHang ({API, currentUser}) {
@@ -36,9 +35,9 @@ function FindAHang ({API, currentUser}) {
 return (
     
     <div><h1>Find a Hang</h1>
-    <ListGroup>
+    <div className='find-hangs-list-div'>
     {hangsList}
-    </ListGroup>
+    </div>
     </div>
 )
 }
