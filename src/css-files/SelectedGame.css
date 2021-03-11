@@ -11,3 +11,8 @@
     padding-top: 15px;
     background-color: #cdc733;
 }
+
+.selected-image {
+    max-height: 450px;
+    max-width: 400px;
+}

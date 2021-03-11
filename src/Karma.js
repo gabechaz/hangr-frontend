@@ -70,7 +70,7 @@ function Karma ({currentUser, API}) {
      </div>
      :
      <div className = 'review-cards-div'>
-         <h3>{currentUser.name}'s Reviews</h3>
+         <h1 className = 'review-header'>{currentUser.name}'s Reviews</h1>
          {reviewCards}
      </div>}
      

@@ -1,9 +1,11 @@
+import './css-files/Karma.css'
+
 function ReviewCard ({review}) {
     return (
-        <div>
-        <h1>{review.review} - {review.reviewer}</h1>
+        <div className = 'review-card'>
+        <h3 >{review.review} - {review.reviewer}</h3>
         <br />
-        <h3>{review.karma} stars!</h3>
+        <h4>{review.karma} stars!</h4>
         </div>
     )
 }

@@ -16,7 +16,7 @@ const game = gamesList.filter(game => id === game.id )
 return (
 
     <div className= 'game-card' style={{ width: '18rem' }}>
-  <img className = 'game-card-image'  src={image} />
+  <img className = 'game-card-image' alt='game'  src={image} />
 
     <h3>{name}</h3>
     <button onClick={handleGameChoice} variant="primary">{selected ? 'Selected' : 'Select Game'}</button>

@@ -17,6 +17,11 @@ const history = useHistory()
         .then(data => console.log(data))
     }
 
+    function goToProfile (e) {
+    
+        history.push(`/profile/${hang.user.id}`)
+    }
+
     function signup (e) {
         const newPeopleNeeded = {people_needed: hang.people_needed - 1}
         const newSUObj = {
@@ -39,7 +44,7 @@ const history = useHistory()
     return (
         
         <div className='find-hang-div'>
-        <h3>{hang.game_name} with {hang.user.name}</h3> 
+        <h3>{hang.game_name} with {hang.user.name} </h3> 
         <br />
         <img className='Game-image' src={hang.game_image} alt = {hang.game_name} />
         <br />
@@ -49,7 +54,10 @@ const history = useHistory()
         <br />
         How (many): {hang.people_needed}
         <br />
-        Host: {hang.user.name}
+        <p>
+        Host: {hang.user.name} 
+        <img onClick = {goToProfile} className = 'user-image' src = {hang.user.img} alt = 'user-avatar' />
+        </p>
         <br />
         <button className='find-hang-btn' onClick={signup}  variant="primary">Signup</button>
         </div>

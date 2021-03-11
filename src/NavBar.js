@@ -5,6 +5,8 @@ import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 function NaviBar ({currentUser, logout}) {
 
+    const profileLink = `/profile/${currentUser.id}`
+
 return (
 
 
@@ -16,7 +18,7 @@ return (
     <Navbar bg='warning'  >
 
         <Nav>
-    <Link  to ='/profile' exact='true'>
+    <Link  to = {profileLink} exact='true'>
          {currentUser.name}'s Profile 
          <Navbar.Brand href="#home">
       <img

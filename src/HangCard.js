@@ -4,37 +4,43 @@ import Button from 'react-bootstrap/Button'
 import { useEffect, useState } from 'react';
 function HangCard ({API, currentUser, hang}) {
 
-    const [host, setHost] = useState( currentUser.name)
+    const [host, setHost] = useState(currentUser.name)
 
-    console.log(currentUser.name)
+    console.log(hang)
 
     useEffect(() => {
-        fetch(`${API}/hangs/${hang.id}`)
+        fetch(`${API}/users/${hang.user_id}`)
         .then(res => res.json())
-        .then(hang => {
-            currentUser.id === hang.user_id ? setHost(currentUser.name) :
-            setHost(hang.user.name)
-        })
-    }, []
+        .then(host =>  setHost(host)
+            // setHost(hang.user.name)
+            // currentUser.id === hang.user_id ? setHost(currentUser) :
+            // setHost(hang.user)
+        )
+    }, [API, hang.user_id]
     )
-    console.log(hang.time)
 
 
-    const time =  Date(hang.time)
-    console.log(time)
+
+    function goToProfile () {
+        history.push(`profile/${host.id}`)
+    }
+
+    // const time =  Date(hang.time)
+
    const history = useHistory()
     function goToHangPage (e) {
         history.push(`/hangs/${hang.id}`)
     }
-console.log('rsvp obj', hang)
+
     return (
 <div className = 'outer-card-div'>
-    <img className = 'hang-image' src={hang.game_image} />
+    <img className = 'hang-image' src={hang.game_image} alt='game' />
     <div>
     {hang.activity_name}
     </div>
     <div>
-    Host: {host}
+    Host: {host.name} 
+    <img className = 'user-image' onClick={goToProfile} src = {host.img} alt = 'user-avatar' />
     </div>
     <div>
        People Needed {hang.people_needed}

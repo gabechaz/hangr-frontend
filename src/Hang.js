@@ -1,5 +1,5 @@
 import './css-files/Hang.css'
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import {useState} from 'react'
 import { useEffect } from "react";
 
@@ -13,27 +13,36 @@ useEffect( () => {
     .then(theHang =>{ 
        const date = new Date(theHang.time)
         setTime(date)
-        console.log(date)
         setHang(theHang)
         setAttendees(handleAttendees(theHang.rsvps))
     })
 }, [API, id]
 )
+
+const history = useHistory()
+
+
 console.log(typeof(hang.time))
 const [attendees, setAttendees] = useState([])
 function handleAttendees (attArr) {
+
     return (
         attArr.map(a => {
+            function goToProfile(id) {
+                history.push(`/profile/${a.id}`)
+                console.log('clicked')
+            }
+            console.log('attendee!')
             return (
-                <div>
-            <img className = 'avatar-thumb' src={a.img} />
-            <span key ={a.id}>{a.name}</span>
+            <div key ={a.id} onClick={goToProfile}>
+            <img onClick={goToProfile} className = 'avatar-thumb' src={a.img} alt='user-avatar' />
+            <span  key ={a.id}>{a.name} </span>
             </div>)
             
         })
     )
 }
-
+console.log(hang.user)
 return (
     <div className= 'outer-hang-div'>
     <div className='hang-div'>

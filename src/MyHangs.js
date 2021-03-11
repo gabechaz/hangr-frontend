@@ -38,8 +38,9 @@ function MyHangs ({API, currentUser}) {
 
 
     const rsvps = myRSVPS
-    .filter(h =>  Date.parse(h.time) > currentTime)
+    // .filter(h =>  Date.parse(h.time) > currentTime)
     .map(hang => {
+    console.log(hang)
         return (
    
             <HangCard API={API} currentUser={currentUser} key={hang.id} hang={hang} />
@@ -47,12 +48,14 @@ function MyHangs ({API, currentUser}) {
         )
     })
     
+
+
     function toggleHangs() {
         setToggle(!toggle)
     }
 
     const hangs = myHangs.map(hang => {
-        console.log(hang)
+   
         return (
 
             <HangCard currentUser={currentUser} key={hang.id} hang={hang} />

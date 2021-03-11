@@ -7,7 +7,7 @@ function SelectedGame ({selectedGame}) {
         <div className = 'outer-selected-div'>
             <h1>{game.name}</h1>
         <div className = 'inner-selected-div'>
-            <img src = {game.image} alt = 'game' />
+            <img className = 'selected-image' src = {game.image} alt = 'game' />
         </div>
            
         </div>

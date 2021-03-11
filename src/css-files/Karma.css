@@ -10,6 +10,19 @@
 
 }
 
+.review-header {
+    padding-top: 15px;
+}
+
+.review-card{
+    padding-top: 30px;
+    margin-bottom: 10px;
+    border: 5px solid;
+    border-color: #9b3675;
+    border-radius: 20px;
+    background-color: #ef8d32;
+}
+
 .karma-header {
     font-family: 'Ribeye Marrow', cursive;
     font-size: 30;
@@ -26,8 +39,10 @@
 }
 
 .button-p {
+    position: absolute;
     float: top;
-    margin-bottom: 20px;
+    z-index: 1;
+    margin-bottom: 50px;
 }
 .button {
     position: relative;

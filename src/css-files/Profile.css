@@ -1,5 +1,9 @@
 .container{
     padding:5%;
+    font-family: 'Ribeye Marrow', cursive;
+    font-size: 30;
+    font-weight:bold;
+
 }
 .container .img{
     text-align:center;

@@ -30,7 +30,6 @@ useEffect(() => {
   })
     .then((response) => response.json())
     .then((userData) => { 
-      console.log(userData)
       // if (userData.id === true)
       setCurrentUser(userData)})
 }, [])
@@ -54,7 +53,7 @@ const login = (credObject) => {
         const {user, token}  = newUser
         localStorage.setItem("token", token)
       setCurrentUser(user)
-      history.push('/profile')}
+      history.push(`/profile/${user.id}`)}
 
   });
 };
@@ -85,6 +84,7 @@ const logout = () => {
   })
     .then((user) => {
       setCurrentUser(null)
+      history.push('/login')
   });
 };
 
@@ -99,7 +99,7 @@ const logout = () => {
 
   return (
     <div className="App">
-       <NaviBar logout={logout} currentUser = {currentUser}/>
+       {currentUser && <NaviBar logout={logout} currentUser = {currentUser}/>}
       <Switch>
 
       <Route exact path="/karma">
@@ -115,7 +115,7 @@ const logout = () => {
       </Route>
 
       <Route exact path="/find-hang" >
-       {currentUser && <FindAHang currentUser={currentUser} API={API} />}
+       {currentUser && <FindAHang  currentUser={currentUser} API={API} />}
       </Route>
 
       <Route exact path ='/login'>
@@ -130,7 +130,7 @@ const logout = () => {
         {currentUser && <MyHangs API={API} currentUser={currentUser} />}
       </Route>
 
-    <Route  exact path="/profile">
+    <Route  exact path="/profile/:id">
       {currentUser && <Profile API={API} setCurrentUser={setCurrentUser} currentUser = {currentUser} />}
     </Route>
 

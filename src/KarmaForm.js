@@ -1,8 +1,10 @@
 import {useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import ReactStars from "react-rating-stars-component";
 import './css-files/KarmaForm.css'
 function KarmaForm ({API, currentUser, attendee, hangId}) {
 
+    const history = useHistory()
     const [comment, setComment] = useState("")
     const [rating, setRating] = useState(5)
     const [reviewed, setReviewed] = useState(false)
@@ -30,6 +32,9 @@ function KarmaForm ({API, currentUser, attendee, hangId}) {
           .then(review => console.log(review))
       }
 
+      function goToProfile () {
+        history.push(`/profile/${attendee.id}`)
+      }
 
 
       const reviewObj = {
@@ -49,7 +54,7 @@ function KarmaForm ({API, currentUser, attendee, hangId}) {
                
 
 
- <label>Leave a Comment and rating for {attendee.name}!</label> <img src ={attendee.img}  className = "karma-form-user-image" />
+ <label>Leave a Comment and rating for {attendee.name}!</label> <img onClick={goToProfile} src ={attendee.img}  className = "karma-form-user-image" />
 
   
  <div className="five-star">

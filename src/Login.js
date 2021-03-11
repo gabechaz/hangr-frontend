@@ -52,6 +52,7 @@ function Login ({login, errors}) {
                             </div>
 
                             <button onClick={handleSubmit} className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign in</button>
+                            <button onClick={handleSubmit} className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Or Sign Up Here!</button>
                             <p>{errors[0] ? errors[0] : null}</p>
                         </form>
                     </div>

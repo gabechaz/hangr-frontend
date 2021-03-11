@@ -4,6 +4,12 @@
   color: #ac0d0d;
 }
 
+
+.user-image {
+  height: 20px;
+  width: 20px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
