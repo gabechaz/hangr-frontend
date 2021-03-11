@@ -1,4 +1,4 @@
-import './css-files/App.css'
+import './css-files/Hang.css'
 import { useParams } from "react-router-dom";
 import {useState} from 'react'
 import { useEffect } from "react";
@@ -35,8 +35,8 @@ function handleAttendees (attArr) {
 }
 
 return (
-    
-    <div>
+    <div className= 'outer-hang-div'>
+    <div className='hang-div'>
     <h1>{hang.game_name} with {hang.user.name}!</h1>
     <div>
          Game: {hang.game_name}
@@ -44,7 +44,7 @@ return (
          <img className='hang-game-image' src={hang.game_image} alt = {hang.game_name} />
     </div>
     <div>
-        Host: {currentUser.name}
+        Host: {hang.user.name}
     </div>
     <div>
         People Needed {hang.people_needed}
@@ -59,7 +59,7 @@ return (
        Time:   {time ? time.getHours() : null}  {time ? time.toDateString() : null}
     </div>
     </div>
-
+    </div>
 )
 
 

@@ -1,32 +1,12 @@
-.Game-image {
-    max-height: 500px;
-max-width: 500px;
-width: 360px;
-height: 360px;
-background-color: #fbe6c2;
-position: inherit;
-border-radius: 50px;
-}
-
-.find-hang-div {
-    /* padding: 500px; */
-    margin: 10px;
-    color: #ac0d0d;
-    background-color:#f0c929; 
-    width: 600px;
-    height: 600px;
+.make-hang-outer-div {
     display: grid;
     place-items: center;
-    border-radius: 50px;
-    font-family: 'Ribeye Marrow', cursive;
-    font-size: 30;
-    font-weight:bold;
-    
+
+
 }
 
+.make-hang-btn {
 
-
-.find-hang-btn {
 
         /* default for <button>, but useful for <a> */
         display: inline-block;
@@ -46,5 +26,14 @@ border-radius: 50px;
         /* make sure colors have enough contrast! */
         color: #ffffff;
         background-color: #ac0d0d;
-      
+
+}
+
+.game-cards {
+    display: inline-grid;
+    margin: 10px;
+    padding-right:900px;
+    grid-template-columns: auto auto auto;
+    place-items: center;
+    position: inherit;
 }

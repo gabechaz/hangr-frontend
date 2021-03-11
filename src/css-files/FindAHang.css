@@ -1,0 +1,9 @@
+.find-hangs-list-div{
+    display: grid;
+    place-items: center;
+}
+
+.find-hang-header {
+    font-family: 'Ribeye Marrow', cursive;
+}
+

@@ -1,0 +1,18 @@
+.outer-hang-div {
+    display: grid; 
+    place-items: center;
+    font-family: 'Ribeye Marrow', cursive;
+    font-size: 30;
+    font-weight:bold;
+    overflow: stretch;
+}
+
+.hang-div {
+    border: solid;
+    height: 550px;
+    width: 500px;
+    background-color: #f48b29;
+    border-radius: 50px;
+    border-color: #440a67;
+   overflow: scroll;
+}

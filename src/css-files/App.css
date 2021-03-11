@@ -15,7 +15,9 @@
   }
 }
 
-
+.outer-nav-div {
+  border-radius: 40px;
+}
 
 /* . {
   display: grid;

@@ -90,27 +90,28 @@ function Signup ({ signup }) {
                             <h3 className="display-4">Sign up</h3>
                             <p className="text-muted mb-4"></p>
                             <form onSubmit={handleSubmit}>
+                              <label>Username</label>
                                 <div className="form-group mb-3">
                                     <input onChange={handleUsername} value={username} id="inputEmail" type="text" placeholder="Username" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
                                 </div>
 
-
+                                <label>Password</label>
                                 <div className="form-group mb-3">
                                     <input value={password} onChange={handlePassword} id="inputPassword" type="password" placeholder="Password" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
                                 </div>
-
+                                <label>Name</label>
                                 <div className="form-group mb-3">
                                     <input value={name} onChange={handleName} id="inputEmail" type="text" placeholder="Name" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
                                 </div>
-
+                                <label>Location</label>
                                 <div className="form-group mb-3">
                                     <input value={location} onChange={handleLocation}  id="inputEmail" type="text" placeholder="Location" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
                                 </div>
-
+                                  <label>Favorite Game</label>
                                 <div className="form-group mb-3">
                                     <input value={favGame} onChange={handleFavGame} id="inputEmail" type="text" placeholder="Favorite Game" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
                                 </div>
-
+                                <label>Favorite Game Genre</label>
                                 <div className="form-group mb-3">
                                     <input value={favGenre} onChange={handleFavGenre} id="inputEmail" type="text" placeholder="Favorite Genre" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
                                 </div>

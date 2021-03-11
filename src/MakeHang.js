@@ -1,8 +1,9 @@
-import './css-files/App.css'
+import './css-files/MakeHang.css'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import DateTimePicker from 'react-datetime-picker'
 import GameCard from './GameCard.js'
+import SelectedGame from './SelectedGame.js'
 // import Select from 'react-select'
 import React, { useState, useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -53,7 +54,7 @@ function MakeHang ({API, currentUser}) {
     const [gameID, setGameID] = useState("")
     const [gameName, setGameName] = useState("")
     const [gameImg, setGameImg] = useState("")
-
+    const [selectedGame, setSelectedGame] = useState(null)
     const [apiString, setApiString] = useState("")
 
 
@@ -61,9 +62,11 @@ function MakeHang ({API, currentUser}) {
     const [gameCards, setGameCards] = useState([])
 
       useEffect(() => {
+      
+        console.log(selectedGame)
           const gamesCards = gamesList.map(game => {
               return (
-                  <GameCard setGameImg={setGameImg} setGamesList={setGamesList} gamesList={gamesList} setGameName={setGameName} setGameID={setGameID} key = {game.id} game = {game} />
+                  <GameCard setSelectedGame = {setSelectedGame} setGameImg={setGameImg} setGamesList={setGamesList} gamesList={gamesList} setGameName={setGameName} setGameID={setGameID} key = {game.id} game = {game} />
               )
           })
           setGameCards(gamesCards)
@@ -152,8 +155,9 @@ function MakeHang ({API, currentUser}) {
 
     const classes = useStyles();
     return (
-        <div>
-<form onSubmit = {submitNewHang} className={classes.root} noValidate autoComplete="off">
+      <div className='make-hang-outer-div'>
+      
+<form  className={classes.root} noValidate autoComplete="off">
   
 
         <DateTimePicker
@@ -164,45 +168,56 @@ function MakeHang ({API, currentUser}) {
           onChange={handleTime}
           variant="filled"
          />
+        <br />
 
-        <TextField
-          id="location"
-          label="Location"
-          value={location}
-          onChange={handleLocationChoice}
-          variant="filled"
-        />
 
-        <TextField
-          id="people-needed"
-          label="People Needed"
-          value={peopleNeeded}
-          onChange={handlePeopleNeeded}
-          variant="filled"
-        />
+<div className="form-group mb-3">
+            <input  type = 'text'
+                     value={location}
+                     onChange={handleLocationChoice}
+            placeholder="Location" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
+       </div>
 
+        <br />
+        <div className="form-group mb-3">
+            <input  type = 'number'
+                     value={peopleNeeded}
+                     onChange={handlePeopleNeeded}
+            placeholder="People Needed" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
+       </div>
+ 
+        <br />
         {/* <Select className="mt-4 col-md-8 col-offset-4" onChange = {handleActChange} options = {gameNames} /> */}
 
 
     
-        <input type="submit" value="Submit" />
+        <button onClick = {submitNewHang} className='make-hang-button' type="submit" value="Submit" >Make Hang!</button>
       
     </form>
     <form onSubmit={handleGameSearch}>
+    <br />
 
-    <TextField
-          id="game-search"
-          label="Enter Game Name"
-          value={apiString}
-            onChange={handleApiString}
-          variant="filled"
-        />
+<div className="form-group mb-3">
+            <input  type = 'text'
+                     value={apiString}
+                     onChange={handleApiString}
+            placeholder="Enter Game Name" required="" autofocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
+       </div>
+
         <br />
+      
           <input  type="submit" value="Find Game" />
+
     </form>
-    <div className ='game-cards'>
-    {gameCards}
-    </div>
+
+
+
+       {!selectedGame ?<div className ='game-cards'>
+    {gameCards} 
+    </div> : <SelectedGame selectedGame = {selectedGame} /> }
+   
+
+    
         </div>
     )
 }

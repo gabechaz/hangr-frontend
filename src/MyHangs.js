@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import './css-files/App.css'
+import './css-files/MyHangs.css'
 import HangCard from './HangCard.js'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Container from 'react-bootstrap/Container'
@@ -9,9 +9,11 @@ import Col from 'react-bootstrap/Col'
 const currentTime = new Date()
 const currentTimeStamp = Date.parse(currentTime)
 
+
 function MyHangs ({API, currentUser}) {
     const [myRSVPS, setMyRSVPS] = useState([<HangCard />])
     const [myHangs, setMyHangs] = useState([<HangCard />])
+    const [toggle, setToggle] = useState(false)
         useEffect(() =>  {
         
         fetch(`${API}/users/${currentUser.id}`)
@@ -39,46 +41,51 @@ function MyHangs ({API, currentUser}) {
     .filter(h =>  Date.parse(h.time) > currentTime)
     .map(hang => {
         return (
-            <ListGroup.Item>
-            <HangCard currentUser={currentUser} key={hang.id} hang={hang} />
-            </ListGroup.Item>
+   
+            <HangCard API={API} currentUser={currentUser} key={hang.id} hang={hang} />
+
         )
     })
     
+    function toggleHangs() {
+        setToggle(!toggle)
+    }
+
     const hangs = myHangs.map(hang => {
         console.log(hang)
         return (
-            <ListGroup.Item>
+
             <HangCard currentUser={currentUser} key={hang.id} hang={hang} />
-            </ListGroup.Item>
+        
         )  
     })
 
 
     return (
 
-
-        <div>
-        
-     
-        <Container>
-        <Row>
-            <Col>
-        <h1> {currentUser.name}'s Hangs</h1>
+        <div className='outer-outer-div'>
+                <button className='button' onClick={toggleHangs}>{!toggle? 'See Hangs' : 'See RSVPS'} </button>
        
-            <ListGroup>
-           {hangs}
-           </ListGroup>
-           </Col>
-           <Col>
-           <h1>{currentUser.name}'s RSVPs</h1>
-           <ListGroup>
-           {rsvps}
-           </ListGroup>
-           </Col>
-       </Row>
-       </Container>
+      
+        <div className  = 'outer-hangs-div'>
+              
+    
+         {toggle ?
+          <div className = 'hangs-col'>
+         <h3 className = 'hang-col'> {currentUser.name}'s Hangs</h3>
+         {hangs}
+        </div> :
+      <div className = 'rsvps-column'>
+        <h3 className = 'rsvp-col'>{currentUser.name}'s RSVPs</h3>
 
+        
+           {rsvps}
+        
+           </div>
+
+           }
+         
+       </div>
        </div>
     )
 

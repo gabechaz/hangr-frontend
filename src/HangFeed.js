@@ -26,7 +26,9 @@ function HangFeed({API}) {
 
 
  
-    const hangCards = pastHangs.map(hang => {
+    const hangCards = pastHangs
+    .reverse()
+    .map(hang => {
         return (
             <HangFeedCard API={API} key = {hang.id} hang = {hang} />
         )

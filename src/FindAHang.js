@@ -1,5 +1,7 @@
+import './css-files/FindAHang.css'
 import { useEffect, useState } from "react"
 import FindAHangCard from './FindAHangCard'
+
 
 
 
@@ -34,7 +36,7 @@ function FindAHang ({API, currentUser}) {
 
 return (
     
-    <div><h1>Find a Hang</h1>
+    <div><h1 className = 'find-hang-header'>Find a Hang</h1>
     <div className='find-hangs-list-div'>
     {hangsList}
     </div>

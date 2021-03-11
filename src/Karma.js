@@ -1,25 +1,32 @@
-import './css-files/index.css'
+import './css-files/Karma.css'
 import {useEffect, useState} from 'react'
 import KarmaCard from './KarmaCard.js'
+import ReviewCard from './ReviewCard.js'
 
 
 
 function Karma ({currentUser, API}) {
 
+    
+
     const [hangs, setHangs] = useState([])
     const currentTime = new Date()
     const currentTimeStamp = Date.parse(currentTime)
+    const [reviewToggle, setReviewToggle] = useState(false)
     // console.log(currentTimeStamp,'current time stamp')
 
     // hangs.forEach(hang => {
     //     console.log(hang)
     //     console.log(Date.parse(hang.time), hang.location)
     // })
-    const tBR = hangs.filter(hang => Date.parse(hang.time) < currentTimeStamp 
-         )
-         console.log(tBR)
-         console.log(hangs)
+
+        //  console.log(tBR)
+        //  console.log(hangs)
     // console.log(hangs.length)
+
+    function toggle () {
+        setReviewToggle(!reviewToggle)
+    }
 
     useEffect(() =>  {
         
@@ -31,6 +38,18 @@ function Karma ({currentUser, API}) {
     ,[API, currentUser.id]
     )
 
+    const tBR = hangs
+    
+    .filter(hang => Date.parse(hang.time) < currentTimeStamp 
+         )
+         console.log(currentUser.reviews)
+
+        const reviewCards = currentUser.reviews.map( review => {
+            return (
+                <ReviewCard key = {review.id} review = {review} />
+            )
+    
+        })
 
     const karmaCards = tBR.map (hang => {
         return (
@@ -41,13 +60,22 @@ function Karma ({currentUser, API}) {
 
 
     return (
-     <div className='karma-div'>karma
-     <div className='to-be-reviewed'>
+        <div className = 'outer-karma-div'>
+            <h1 className = 'karma-header'>Review Your Past Hangs here!</h1>
+            <button onClick={toggle} className = 'button'>{reviewToggle ?<p className = 'button-p'>See Your Own Reviews Here</p> : <p className='button-p'>Enter Your Reviews Here</p>}</button>
+
+     <div className='karma-div'>
+     {reviewToggle ? <div className='to-be-reviewed'>
         {karmaCards}
      </div>
+     :
+     <div className = 'review-cards-div'>
+         <h3>{currentUser.name}'s Reviews</h3>
+         {reviewCards}
+     </div>}
      
      </div>
-
+     </div>
 
     )
  

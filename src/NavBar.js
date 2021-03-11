@@ -12,6 +12,7 @@ return (
     <div>
     {currentUser ? 
     <Container>
+
     <Navbar bg='warning'  >
 
         <Nav>
@@ -80,8 +81,10 @@ return (
        </Link>
        </Nav.Link>
        </Navbar>
+     
        </Container>}
        </div>
+     
 )
 }
 

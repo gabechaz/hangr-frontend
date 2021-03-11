@@ -1,5 +1,4 @@
 import './css-files/FindAHangCard.css'
-import {ListGroup, Button} from 'react-bootstrap/'
 import { useHistory } from "react-router-dom";
 function FindAHangCard ({hang, API, currentUser}) {
 const history = useHistory()
@@ -40,7 +39,7 @@ const history = useHistory()
     return (
         
         <div className='find-hang-div'>
-        What: {hang.game_name}
+        <h3>{hang.game_name} with {hang.user.name}</h3> 
         <br />
         <img className='Game-image' src={hang.game_image} alt = {hang.game_name} />
         <br />
@@ -52,7 +51,7 @@ const history = useHistory()
         <br />
         Host: {hang.user.name}
         <br />
-        <Button onClick={signup}  variant="primary">Signup</Button>
+        <button className='find-hang-btn' onClick={signup}  variant="primary">Signup</button>
         </div>
     )
 }

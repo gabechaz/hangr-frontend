@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import KarmaForm from './KarmaForm.js'
+import './css-files/KarmaCard.css'
 
 
 
@@ -45,7 +46,9 @@ function KarmaCard ({hang, API, currentUser}) {
   
 
 
-      const attendeeForms = attendees.map (a => {
+      const attendeeForms = attendees
+      .filter(a => a.id !== currentUser.id)
+      .map (a => {
           return (
       
             <KarmaForm hangId = {hang.id} currentUser ={currentUser} attendee = {a} key ={a.id} API={API} />

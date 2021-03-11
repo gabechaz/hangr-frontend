@@ -1,0 +1,13 @@
+.inner-selected-div {
+
+}
+
+.outer-selected-div {
+    font-family: 'Ribeye Marrow', cursive;
+    font-size: 30;
+    font-weight:bold;
+    border: 20px solid ;
+    border-radius: 20px;
+    padding-top: 15px;
+    background-color: #cdc733;
+}

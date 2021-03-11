@@ -1,0 +1,31 @@
+.game-card-div {
+    width: 400px;
+    height: 400px;
+
+}
+
+.game-card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-width: 0;
+    height: 350px;
+    word-wrap: break-word;
+    background-color: #91684a;
+ 
+    border-color: blue;
+    /* background-clip: border-box; */
+    border: 20px solid;
+    border-radius: 50px;
+    margin: 10px;
+    font-family: 'Ribeye Marrow', cursive;
+    font-size: 30;
+    font-weight:bold;
+}
+
+.game-card-image{
+    height:200px;
+    width: 200px;
+}
