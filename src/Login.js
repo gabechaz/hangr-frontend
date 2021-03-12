@@ -1,8 +1,9 @@
 import './css-files/App.css'
 import React, { useState, } from 'react'
+import {useHistory} from 'react-router-dom'
 
 function Login ({login, errors}) {
-
+  const history = useHistory()
   const [usernameInput, setUsernameInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
 
@@ -13,6 +14,10 @@ function Login ({login, errors}) {
 
   function handlePasswordInput (e) {
     setPasswordInput(e.target.value)
+  }
+
+  function sendToSignup () {
+    history.push('/signup')
   }
 
   function handleSubmit (e) {
@@ -52,7 +57,7 @@ function Login ({login, errors}) {
                             </div>
 
                             <button onClick={handleSubmit} className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign in</button>
-                            <button onClick={handleSubmit} className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Or Sign Up Here!</button>
+                            <button onClick={sendToSignup} className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Or Sign Up Here!</button>
                             <p>{errors[0] ? errors[0] : null}</p>
                         </form>
                     </div>

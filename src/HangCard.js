@@ -18,7 +18,7 @@ function HangCard ({API, currentUser, hang}) {
         )
     }, [API, hang.user_id]
     )
-
+    console.log(host)
 
 
     function goToProfile () {
