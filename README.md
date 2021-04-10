@@ -1,6 +1,7 @@
 Welcome to Hangr! 
 ![Hangr Find Hangs Page](hangr-image.png)
 Hangr is a social interaction app in which users can create and search for local board game meet ups.
+
 Installation:
 - Fork and clone this repository
 - "bundle install" if necessary 
@@ -9,6 +10,7 @@ Installation:
 - Run "rails s" in the terminal 
 - Open the Hangr Frontend
 - Run "npm start" 
+
 Navigating the app:
 - Sign Up/Log in
 - If you are signing up for the first time, you can select your avatar by pressing the new avatar button until you find one that matches your style
