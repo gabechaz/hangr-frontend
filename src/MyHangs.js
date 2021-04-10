@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react"
 import './css-files/MyHangs.css'
 import HangCard from './HangCard.js'
-import ListGroup from 'react-bootstrap/ListGroup'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 
-const currentTime = new Date()
-const currentTimeStamp = Date.parse(currentTime)
+// const currentTime = new Date()
+// const currentTimeStamp = Date.parse(currentTime)
 
 
 function MyHangs ({API, currentUser}) {

@@ -9,15 +9,13 @@ function Signup ({ signup }) {
   const [favGame, setFavGame] = useState("")
   const [favGenre, setFavGenre] = useState("")
   const [location, setLocation] = useState("")
-  const [bio, setBio] = useState("")
+
 
   function handleFavGame (e) {
     setFavGame(e.target.value)
   }
 
-  function handleBio (e) {
-    setBio(e.target.value)
-  }
+
 
   function handleLocation (e) {
     setLocation(e.target.value)
@@ -57,7 +55,7 @@ function Signup ({ signup }) {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const newSignup = {name, username, password, favGenre, favGame, location, img, bio}
+    const newSignup = {name, username, password, favGenre, favGame, location, img}
     signup(newSignup)
 
    

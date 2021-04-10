@@ -54,7 +54,7 @@ function KarmaForm ({API, currentUser, attendee, hangId}) {
                
 
 
- <label>Leave a Comment and rating for {attendee.name}!</label> <img onClick={goToProfile} src ={attendee.img}  className = "karma-form-user-image" />
+ <label>Leave a Comment and rating for {attendee.name}!</label> <img onClick={goToProfile} src ={attendee.img} alt="attendee"  className = "karma-form-user-image" />
 
   
  <div className="five-star">

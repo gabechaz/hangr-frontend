@@ -21,6 +21,9 @@ const API = 'http://localhost:3000'
 function App() {
 
 const history = useHistory()
+
+
+
 useEffect(() => {
   const token = localStorage.getItem("token") 
   fetch(`${API}/me`, {
@@ -30,9 +33,11 @@ useEffect(() => {
   })
     .then((response) => response.json())
     .then((userData) => { 
-      // if (userData.id === true)
+      if (userData.id === true)
       setCurrentUser(userData)})
 }, [])
+
+
 
 const login = (credObject) => {
   fetch(`${API}/login`, {

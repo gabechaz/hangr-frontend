@@ -6,7 +6,6 @@ function HangFeed({API}) {
     const currentTimeStamp = Date.parse(currentTime)
     const [hangs, setHangs] = useState([])
 
-    const [hangsIndex, setHangsIndex] = useState(0)
 
     useEffect (() => {
         fetch(`${API}/hangs`)

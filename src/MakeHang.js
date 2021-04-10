@@ -1,6 +1,5 @@
 import './css-files/MakeHang.css'
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import DateTimePicker from 'react-datetime-picker'
 import GameCard from './GameCard.js'
 import SelectedGame from './SelectedGame.js'
@@ -71,7 +70,7 @@ function MakeHang ({API, currentUser}) {
           })
           setGameCards(gamesCards)
       }
-      , [gamesList]
+      , [gamesList, selectedGame]
       )
 
       function handleTime (e) {
